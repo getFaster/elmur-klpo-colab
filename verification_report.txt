@@ -1,0 +1,50 @@
+ELMUR-KLPO Step 1: Gradient Verification
+
+Action space: 11 (slot-major; no-op ID=10)
+Memory slots: 2
+Effective manager decisions: 3
+Enumerated trajectories: 1331
+dtype: float64; seeds: (7, 19, 41); betas: (0.1, 0.7, 2.0); absolute tolerance: 1e-08
+Seeded policies: learner scale=0.35; behavior seed=seed+100, scale=0.2
+Explicit p: bias=linspace(-.45,.55), m0=linspace(.6,-.4), m1=linspace(-.3,.5)
+Explicit q: uniform; all other coefficients zero; 11 points per linspace
+
+Test A: KLPO regression gradient identity (9 cases; worst errors)
+  Absolute error: 2.359223927328e-15
+  Relative error: 4.518702636577e-15
+  PASS
+
+Test B: On-policy equality at p=q (3 cases; worst errors)
+  Absolute error: 3.330669073875e-15
+  Relative error: 6.954925479775e-15
+  PASS
+
+Test C: Off-policy difference (explicit coefficients, beta=0.7)
+  Gradient discrepancy: 1.583745546561e-01
+  True-gradient norm: 8.585769077996e-01
+  EXPECTED DIFFERENCE
+
+Test D: RTG vs full return (9 cases; worst errors)
+  Absolute error: 3.663735981263e-15
+  Relative error: 5.436362550592e-15
+  PASS
+
+Test E: Exact score centering (explicit coefficients, beta=0.7)
+  Error: 1.908195823574e-17
+  Detached-center gradient difference: 6.377944999090e-01
+  PASS
+
+Test F: Stop-gradient (explicit coefficients, beta=0.7)
+  Gradient difference: 9.433696468821e-02
+  PASS
+
+Test G: Delayed credit assignment (uniform on-policy manager)
+  Early-action gradient norm: 2.127162774663e-01
+  PASS
+
+Finite differences: explicit L_reg (all 55 parameters, step=1e-5, beta=0.7)
+  Absolute error: 3.386440433628e-11
+  Relative error: 1.496325065150e-10
+  PASS
+
+Overall: PASS
