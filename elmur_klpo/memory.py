@@ -1,9 +1,6 @@
-"""Stable categorical action IDs and detached, out-of-place scalar memory writes."""
+"""Stable categorical action IDs and memory merge coefficients."""
 
 from dataclasses import dataclass
-
-import torch
-from torch import Tensor
 
 MERGE_COEFFICIENTS = (0.0, 0.25, 0.5, 0.8, 0.95)
 
@@ -36,35 +33,12 @@ class ActionSpace:
     def actions(self) -> tuple[tuple[int | None, float], ...]:
         return tuple(self.decode(i) for i in range(len(self)))
 
-
-@torch.no_grad()
-def update_memory(
-    memory: Tensor,
-    candidate: Tensor | float,
-    action_ids: Tensor | int,
-    action_space: ActionSpace,
-) -> Tensor:
-    """Write scalar candidates into [..., B] memory; detach every transition.
-
-    Candidates and action IDs broadcast over the memory's leading dimensions.
-    The input is never mutated, including for no-op actions.
-    """
-    if memory.ndim < 1 or memory.shape[-1] != action_space.slots:
-        raise ValueError("Memory's last dimension must match the slot count")
-    if not memory.is_floating_point():
-        raise ValueError("Memory must have a floating-point dtype")
-    ids = torch.as_tensor(action_ids, device=memory.device)
-    if ids.dtype not in (torch.int32, torch.int64):
-        raise ValueError("Action IDs must be integers")
-    ids = torch.broadcast_to(ids, memory.shape[:-1])
-    if ((ids < 0) | (ids >= len(action_space))).any():
-        raise ValueError("Action IDs are outside the action space")
-    z = torch.as_tensor(candidate, dtype=memory.dtype, device=memory.device)
-    z = torch.broadcast_to(z, memory.shape[:-1])
-    slots = ids // len(MERGE_COEFFICIENTS)
-    alphas = memory.new_tensor(MERGE_COEFFICIENTS)[ids % len(MERGE_COEFFICIENTS)]
-    selected = (
-        torch.arange(action_space.slots, device=memory.device) == slots[..., None]
-    )
-    blended = alphas[..., None] * memory + (1 - alphas[..., None]) * z[..., None]
-    return torch.where(selected, blended, memory).detach()
+    def encode(self, slot: int | None, alpha: float) -> int:
+        """Inverse of decode; alpha=1 is only valid for the global no-op."""
+        if slot is None and alpha == 1:
+            return self.noop_id
+        if slot is None or not 0 <= slot < self.slots:
+            raise ValueError("Invalid slot")
+        if alpha not in MERGE_COEFFICIENTS:
+            raise ValueError("Invalid merge coefficient")
+        return slot * len(MERGE_COEFFICIENTS) + MERGE_COEFFICIENTS.index(alpha)

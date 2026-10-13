@@ -1,0 +1,18 @@
+{
+  "data_seed": 41,
+  "train_episodes": 256,
+  "validation_episodes": 64,
+  "test_episodes": 64,
+  "horizon": 10,
+  "slots": 2,
+  "dimension": 32,
+  "reader_steps": 500,
+  "batch_size": 32,
+  "manager_steps": 5,
+  "eval_every": 5,
+  "learning_rate": 0.001,
+  "beta": 0.1,
+  "seeds": [1],
+  "cpu_threads": 1,
+  "memory_gate_margin": 0.02
+}

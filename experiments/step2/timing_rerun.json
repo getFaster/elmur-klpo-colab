@@ -1,0 +1,137 @@
+{
+  "executed_date": "2026-10-12",
+  "source_results": "runs/step2_slot_conditioned_timing_rerun/results.json",
+  "config": {
+    "data_seed": 41,
+    "train_episodes": 256,
+    "validation_episodes": 64,
+    "test_episodes": 64,
+    "horizon": 10,
+    "slots": 2,
+    "dimension": 32,
+    "reader_steps": 500,
+    "batch_size": 32,
+    "manager_steps": 100,
+    "eval_every": 20,
+    "learning_rate": 0.001,
+    "beta": 0.1,
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "cpu_threads": 1,
+    "memory_gate_margin": 0.02
+  },
+  "candidate_interface": "slot_conditioned",
+  "device": "cpu",
+  "hardware": "AMD Ryzen 9 4900HS CPU; one Torch thread",
+  "torch_version": "2.14.1+cpu",
+  "reader_preparation_seconds": 17.24056906700571,
+  "timing_definition": "Training compute seconds = sum of rollout_seconds + update_seconds across fresh training iterations. Not end-to-end wall time.",
+  "timing_excludes": [
+    "reader preparation",
+    "data generation and batch selection",
+    "held-out evaluation",
+    "checkpoint I/O",
+    "process startup"
+  ],
+  "update_timing_includes": [
+    "loss and gradient computation",
+    "gradient clipping",
+    "Adam update",
+    "post-update KL and finite diagnostics"
+  ],
+  "reader_manager_training_data": "Both use the same 256 training episodes; validation and test are separate.",
+  "matches_previous_performance": true,
+  "methods": {
+    "reinforce": {
+      "seeds": [
+        {
+          "seed": 1,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.3359949160003453,
+          "update_seconds": 0.1509991159909987,
+          "training_compute_seconds": 2.486994031991344,
+          "junction_accuracy": 0.75,
+          "closed_loop_success": 0.671875,
+          "numerical_failures": 0
+        },
+        {
+          "seed": 2,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.352740848022222,
+          "update_seconds": 0.1528575459815329,
+          "training_compute_seconds": 2.505598394003755,
+          "junction_accuracy": 0.515625,
+          "closed_loop_success": 0.5625,
+          "numerical_failures": 0
+        },
+        {
+          "seed": 3,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.3849851479535573,
+          "update_seconds": 0.15465888593462296,
+          "training_compute_seconds": 2.5396440338881803,
+          "junction_accuracy": 0.8125,
+          "closed_loop_success": 0.828125,
+          "numerical_failures": 0
+        }
+      ],
+      "total_rollout_seconds": 7.073720911976125,
+      "total_update_seconds": 0.45851554790715454,
+      "total_training_compute_seconds": 7.532236459883279,
+      "mean_training_compute_seconds_per_seed": 2.51074548662776,
+      "stdev_training_compute_seconds_per_seed": 0.026699720912291957,
+      "mean_junction_accuracy": 0.6927083333333334,
+      "mean_closed_loop_success": 0.6875
+    },
+    "klpo": {
+      "seeds": [
+        {
+          "seed": 1,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.2079417850327445,
+          "update_seconds": 0.1396242029950372,
+          "training_compute_seconds": 2.3475659880277817,
+          "junction_accuracy": 0.671875,
+          "closed_loop_success": 0.6875,
+          "numerical_failures": 0
+        },
+        {
+          "seed": 2,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.428224725976179,
+          "update_seconds": 0.15891295600886224,
+          "training_compute_seconds": 2.587137681985041,
+          "junction_accuracy": 0.5625,
+          "closed_loop_success": 0.59375,
+          "numerical_failures": 0
+        },
+        {
+          "seed": 3,
+          "updates": 100,
+          "training_trajectories": 3200,
+          "rollout_seconds": 2.3287260589713696,
+          "update_seconds": 0.14920977994188434,
+          "training_compute_seconds": 2.477935838913254,
+          "junction_accuracy": 0.765625,
+          "closed_loop_success": 0.703125,
+          "numerical_failures": 0
+        }
+      ],
+      "total_rollout_seconds": 6.964892569980293,
+      "total_update_seconds": 0.44774693894578377,
+      "total_training_compute_seconds": 7.412639508926077,
+      "mean_training_compute_seconds_per_seed": 2.470879836308692,
+      "stdev_training_compute_seconds_per_seed": 0.1199416087767476,
+      "mean_junction_accuracy": 0.6666666666666666,
+      "mean_closed_loop_success": 0.6614583333333334
+    }
+  }
+}

@@ -6,7 +6,8 @@ import torch
 from torch import Tensor
 from torch.nn import functional as F
 
-from elmur_klpo.memory import ActionSpace, update_memory
+from elmur_klpo.memory import ActionSpace
+from elmur_klpo.training_memory import write_vectors
 
 
 @dataclass(frozen=True)
@@ -63,4 +64,13 @@ class ToyEnvironment:
     def transition(self, time: int, memory: Tensor, actions: Tensor | int) -> Tensor:
         if not 0 <= time < self.decisions:
             raise ValueError("There is no terminal manager action")
-        return update_memory(memory, self.candidates[time], actions, self.action_space)
+        if memory.ndim < 1 or memory.shape[-1] != self.action_space.slots:
+            raise ValueError("Memory's last dimension must match the slot count")
+        # Represent the fixed scalar toy observations as width-one slot vectors.
+        vectors = memory.reshape(-1, self.action_space.slots, 1)
+        candidates = torch.full_like(vectors, self.candidates[time])
+        ids = torch.as_tensor(actions, device=memory.device)
+        if ids.dtype not in (torch.int32, torch.int64):
+            raise ValueError("Action IDs must be integers")
+        ids = torch.broadcast_to(ids, memory.shape[:-1]).reshape(-1).long()
+        return write_vectors(vectors, candidates, ids).reshape(memory.shape)

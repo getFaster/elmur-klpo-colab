@@ -1,13 +1,14 @@
-# ELMUR-KLPO: Step 1
+# ELMUR-KLPO: Steps 1 and 2
 
-An exactly enumerable, float64 PyTorch experiment verifying the categorical
-RTG-KLPO memory-manager gradient. This implements only the gradient-verification
-step in [step_1_plan.md](step_1_plan.md). No reader/manager training is included.
+An exactly enumerable, float64 PyTorch experiment verifies the categorical
+RTG-KLPO memory-manager gradient from [step_1_plan.md](step_1_plan.md).
+Step 2 adds single-reader manager training with the authors' ELMUR model and
+T-Maze demonstrations. See [implementation and commands](step_2_implementation.md)
+and [measured three-seed results](step_2_results.md).
 
 The [ELMUR authors' implementation](https://github.com/CognitiveAISystems/RATE/tree/main/offline_rl_baselines/ELMUR)
-is the architectural reference. Its transformer and LRU machinery are not
-dependencies of this self-contained mathematical experiment; the action and
-gradient definitions here follow the supplied Step 1 plan.
+is the architectural reference. Pinned MIT-licensed components are vendored for
+Step 2; the Step 1 mathematical experiment remains independent of the reader.
 
 ## Run
 
@@ -20,8 +21,8 @@ uv run pytest
 This single command installs the locked environment and runs all prescribed
 tests, including A–G and finite differences for every parameter. Python 3.12 is
 pinned in `.python-version`; uv can provision it if needed. Linux and Windows
-use CPU PyTorch wheels. The package itself depends only on PyTorch; pytest and
-Ruff are development dependencies.
+use CPU PyTorch wheels. Step 2 also uses NumPy, Gym, and tqdm for the authors'
+T-Maze generator; pytest and Ruff are development dependencies.
 
 Print the numerical verification report:
 
@@ -154,4 +155,5 @@ scripts/
 The supplied `step_1_plan.md` is unchanged. Tests E and F deliberately construct
 incorrect losses inside verification utilities to prove sensitivity to detaching
 the centering term or differentiating feedback. These controls are separate from
-the reusable estimator. Step 2 has not begun.
+the reusable estimator. Step 2 modules, tests, and configurations are documented
+in [step_2_implementation.md](step_2_implementation.md).
