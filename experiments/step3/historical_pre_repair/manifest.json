@@ -1,0 +1,242 @@
+{
+  "note": "Historical files left in place; code/config/report snapshots preserved before repair. Checkpoints are incompatible with repaired schema.",
+  "snapshot": "runs/step3_pre_repair_snapshot/source.tar.gz",
+  "source_sha256": "8ba405f77db64926a5395ff82b86fafa5cf23b41c07facbe3e10ebe0571eb1db",
+  "artifacts": [
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/job.json",
+      "bytes": 606,
+      "sha256": "5b0e946f7358edf6de50d37a8a64909c1736a1379b8e0d84e0124c01b73893e4"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/training.log",
+      "bytes": 85466,
+      "sha256": "eb94b08ddfdb24710ce7747bc6704c9728e5737e63ebfda80fd5723f79d60468"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/results.json",
+      "bytes": 515905,
+      "sha256": "a53fde98b08aa710a43967bc3b333299a2d99a7cc30edeac673dff6f6eda993b"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/dataset_splits.json",
+      "bytes": 28322,
+      "sha256": "2ac07b91777c1b271b4473b8c962ae2b595436cbe8a51ef1d902df6bf7e977c4"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/config.json",
+      "bytes": 1433,
+      "sha256": "a351fc1e5944299a4fcbd6878fb5fd08ddff09961239c3bc2e6a6f462218e0e1"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/history.jsonl",
+      "bytes": 324211,
+      "sha256": "cbe5fbf7911fb0492e3e7afe56df78a97ecc6d697393a0e7c05b197c0cc117ba"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/reader_report.json",
+      "bytes": 430054,
+      "sha256": "e8af204dfd55973c6d225f4bed7e0dcdfab0b8815710e56a9fbfe1d2d30e6e17"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/prepare_results.json",
+      "bytes": 459658,
+      "sha256": "9be84e13f67113b19e5ee56f2d419755c94e06ceba6b77f131960d228cc964d0"
+    },
+    {
+      "path": "runs/step3_remembercolor_reader_gpu/remember_color/reader.pt",
+      "bytes": 5166929,
+      "sha256": "b63ff0dedeb8d20034c5e94e0d66d15ed431383338aea094549930fb8ec94056"
+    },
+    {
+      "path": "runs/step3_robot_cpu_renderer/results.json",
+      "bytes": 4081,
+      "sha256": "7ecc150cd53de2360628204ba12a5df7e7546ea299c055b242a9019e6507e2b4"
+    },
+    {
+      "path": "runs/step3_robot_cpu_renderer/remember_color/config.json",
+      "bytes": 1185,
+      "sha256": "375a1dc00aafe5c62fca148e48165fa2566ca84d061aebb1d4b87f9abf3f50dd"
+    },
+    {
+      "path": "runs/step3_robot_cpu_renderer/remember_color/smoke_results.json",
+      "bytes": 3429,
+      "sha256": "901c0b99c4e29d3536f2e0d59a1c368d2475830e9556707cba2719c5926499c2"
+    },
+    {
+      "path": "runs/step3_reader_preparation/results.json",
+      "bytes": 1290851,
+      "sha256": "2c421c48b21faa73dfe06b47c20e61b2cccabe2d0ddb41fbe02c446341524621"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/config.json",
+      "bytes": 1296,
+      "sha256": "ada7b297e3b2e8f4c9a9141187f428b4c06b9d71a96fd43db83ea59447c150d3"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_5.pt",
+      "bytes": 621931,
+      "sha256": "ce3f1e98ef60a738deedd1a05a5148451bb471f0139fd77ff584a5fe89fc4378"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_report.json",
+      "bytes": 836435,
+      "sha256": "f3a71fe15f122b2a73365a470e31b4f919983709941d7e31d1a30eaf89a69acc"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/prepare_results.json",
+      "bytes": 898996,
+      "sha256": "a4dea52ab16bcff6c85a8ce71b139452cb1e283fe2b6213a7628a5e38a6acbaf"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_1.pt",
+      "bytes": 508843,
+      "sha256": "c0650b8f5bdf93dc5731c29fd94dd8b9b1abf4a0367e72bec97899310f0d9e7b"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_3.pt",
+      "bytes": 549611,
+      "sha256": "a5b8514465762ca8ebd756a5fc76e9cadfabfca5a1ee998daf893df05f466f3e"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_4.pt",
+      "bytes": 577451,
+      "sha256": "ab3ac6848c79e4a382eecf9c5579fd4d49802eb41757702dced73f8683b6abe3"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_2.pt",
+      "bytes": 524523,
+      "sha256": "79614f6d01f651dac0be043b58af3445e27334f5152385e7768197ff65138fde"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader_phase_6.pt",
+      "bytes": 701931,
+      "sha256": "8bc9c3299ce5eded1a4881a5082389de6c792edec264fc62e0a1e7bafe7e8627"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/compare_results.json",
+      "bytes": 1135435,
+      "sha256": "8a9239998893f62c8e6b67828f04af6feb2218c9322f180eddc000d8ae372be8"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/frozen_reader_baselines.json",
+      "bytes": 219877,
+      "sha256": "2a1c54afed5ea1d3d9febd6149fa23b5fdda0e7f5903715977c4c7adfcf928fb"
+    },
+    {
+      "path": "runs/step3_reader_preparation/autoencode/reader.pt",
+      "bytes": 742379,
+      "sha256": "e37e59f6dbe512dc2bca153c31ae0d220d8edbabecb93d87a087b1c5f67ea381"
+    },
+    {
+      "path": "runs/step3_robot_retry/results.json",
+      "bytes": 3376,
+      "sha256": "7e93995eab7dd72ba0c07637e984db1833d83e5682308344d07965dc8da27c9c"
+    },
+    {
+      "path": "runs/step3_robot_retry/remember_color/config.json",
+      "bytes": 1185,
+      "sha256": "375a1dc00aafe5c62fca148e48165fa2566ca84d061aebb1d4b87f9abf3f50dd"
+    },
+    {
+      "path": "runs/step3_robot_retry/remember_color/smoke_results.json",
+      "bytes": 2724,
+      "sha256": "1dcd65b37480e5e906f32981577a59d0126409b9c19cf8920267843e78f2c94f"
+    },
+    {
+      "path": "runs/step3_smoke_final/results.json",
+      "bytes": 427779,
+      "sha256": "3423d7e52d932752dc55ae5e923a849bce7772fee20443fc8f18866ba3b563ac"
+    },
+    {
+      "path": "runs/step3_smoke_final/remember_color/config.json",
+      "bytes": 1185,
+      "sha256": "375a1dc00aafe5c62fca148e48165fa2566ca84d061aebb1d4b87f9abf3f50dd"
+    },
+    {
+      "path": "runs/step3_smoke_final/remember_color/smoke_results.json",
+      "bytes": 3429,
+      "sha256": "f3fa66b47f767d20075711cbd104fbca5626457ae4c0d79f9bbc4e91f6fe7155"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/config.json",
+      "bytes": 1091,
+      "sha256": "56ad9760bbad59a76377e47daf4e33fe54d1f6ebf484ca08f48c91c880cf723d"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/reader_report.json",
+      "bytes": 146980,
+      "sha256": "0abddb657514a56f9dfe4c31225ef84a8a34195fcb65daf513d023c15d70aa4b"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/reader_phase_1.pt",
+      "bytes": 247339,
+      "sha256": "cb53c818f4c738654eaf31e951645bfc2b0485971bdc1a70c95a14e2ad1d68cf"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/smoke_results.json",
+      "bytes": 372107,
+      "sha256": "8b2d50c9c553feb30f116b6a100b18e738d9e030bf582c705eeb274671a2a458"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/reader_phase_3.pt",
+      "bytes": 258603,
+      "sha256": "d14ff7fa82664c7408029b1c1e4a957115a2b1007f015a0e55053648170092d8"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/reader_phase_2.pt",
+      "bytes": 250539,
+      "sha256": "fcea87afc92d08c8e8926768c8983f6195ee1ae198d0100f5ffa6939fcc0923f"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/frozen_reader_baselines.json",
+      "bytes": 197963,
+      "sha256": "31a231f2e56dffc460d4c071d220080f91c5e9418ae34a212ea90b14b7ddcdca"
+    },
+    {
+      "path": "runs/step3_smoke_final/autoencode/reader.pt",
+      "bytes": 298475,
+      "sha256": "1e41cd23dcb474541f12c9e002c09693ac97e45e6044785ee16388893adaaede"
+    },
+    {
+      "path": "runs/step3_smoke/results.json",
+      "bytes": 394765,
+      "sha256": "4dbb207e8be833264266d93c61564dc918ad429b55a6dc9f48da6c32c797a287"
+    },
+    {
+      "path": "runs/step3_smoke/remember_color/config.json",
+      "bytes": 1159,
+      "sha256": "0c1727ddd262c47e71e17050d33fbc516bdf9cd5a3254d26feee5c23118d03b9"
+    },
+    {
+      "path": "runs/step3_smoke/remember_color/smoke_results.json",
+      "bytes": 1665,
+      "sha256": "3ea51eff3afccd128348d8f32929da25cdd212e49871cd1cafee208fe438b65d"
+    },
+    {
+      "path": "runs/step3_smoke/autoencode/config.json",
+      "bytes": 1091,
+      "sha256": "56ad9760bbad59a76377e47daf4e33fe54d1f6ebf484ca08f48c91c880cf723d"
+    },
+    {
+      "path": "runs/step3_smoke/autoencode/reader_report.json",
+      "bytes": 130563,
+      "sha256": "0484d6086cf6ee7e8da45e87ed2fca7436f0a504049a1b1d10e0e42f43bed97d"
+    },
+    {
+      "path": "runs/step3_smoke/autoencode/smoke_results.json",
+      "bytes": 344065,
+      "sha256": "035ae0b56d793eafe0525e85e7659b7244e4276251484e246892e683ecaa6dc0"
+    },
+    {
+      "path": "runs/step3_smoke/autoencode/frozen_reader_baselines.json",
+      "bytes": 187942,
+      "sha256": "a4c782ebea557839c0fd02fa816622b1b9c12e68c3bab5344621f47a5e7cbf28"
+    },
+    {
+      "path": "runs/step3_smoke/autoencode/reader.pt",
+      "bytes": 293355,
+      "sha256": "5b95b038b918316d7ea8749032fe51eb98fa93832755bf2995742240b757fca7"
+    }
+  ]
+}

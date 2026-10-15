@@ -1,0 +1,446 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "command_source": "offline_rl_baselines/ELMUR/README.md",
+  "command": "python src/train.py --data.gamma=1 --data.max-length=105 --data.path-to-dataset=data/POPGym/popgym-AutoencodeEasy-v0 --dtype=float32 --end-seed=3 --model-mode=ELMUR --model.act-dim=4 --model.d-ff=128 --model.d-model=64 --model.detach-memory=True --model.dropatt=0.26 --model.dropout=0.14 --model.env-name=popgym-AutoencodeEasy --model.label-smoothing=0.22 --model.load-balancing-loss-coef=0.1 --model.lru-blend-alpha=0.79 --model.max-seq-len=1024 --model.memory-dropout=0.17 --model.memory-init-std=0 --model.memory-size=8 --model.n-head=4 --model.n-layer=12 --model.n-shared-experts=2 --model.norm-type=rmsnorm --model.num-experts=1 --model.padding-idx=-10 --model.pos-type=relative --model.pre-lnorm=False --model.routed-d-ff=128 --model.sequence-format=s --model.shared-d-ff=256 --model.state-dim=-1 --model.top-k=1 --model.use-causal-self-attn-mask=True --model.use-lru=True --model.use-moe=True --model.use-shared-expert=True --model.use-swiglu=False --online-inference.best_checkpoint_metric=ReturnsMean_1.0 --online-inference.desired-return-1=1 --online-inference.episode-timeout=1001 --online-inference.use-argmax=False --start-seed=1 --tensorboard-dir=runs/POPGym/AutoencodeEasy-v0 --text=iclr-2026 --training.batch-size=128 --training.beta-1=0.99 --training.beta-2=0.99 --training.ckpt-epoch=50 --training.context-length=35 --training.epochs=800 --training.final-tokens=10000000 --training.grad-norm-clip=5 --training.learning-rate=0.00012 --training.log-last-segment-loss-only=False --training.lr-end-factor=0.01 --training.online-inference=True --training.sections=3 --training.use-cosine-decay=False --training.warmup-steps=50000 --training.weight-decay=0.1 --wandb.project-name=ELMUR-POPGym --wandb.wwandb=True",
+  "model": {
+    "d_model": 64,
+    "d_ff": 128,
+    "n_layer": 12,
+    "n_head": 4,
+    "max_seq_len": 1024,
+    "dropout": 0.14,
+    "dropatt": 0.26,
+    "pre_lnorm": false,
+    "memory_size": 8,
+    "env_name": "popgym-AutoencodeEasy",
+    "memory_init_std": 0,
+    "detach_memory": true,
+    "use_causal_self_attn_mask": true,
+    "use_lru": true,
+    "lru_blend_alpha": 0.79,
+    "pos_type": "relative",
+    "train_stride": null,
+    "padding_idx": -10,
+    "memory_dropout": 0.17,
+    "dtype": "float32",
+    "sequence_format": "s",
+    "norm_type": "rmsnorm",
+    "use_moe": true,
+    "num_experts": 1,
+    "top_k": 1,
+    "expert_dropout": null,
+    "load_balancing_loss_coef": 0.1,
+    "use_swiglu": false,
+    "use_shared_expert": true,
+    "n_shared_experts": 2,
+    "shared_d_ff": 256,
+    "routed_d_ff": 128,
+    "use_shared_memory": false,
+    "use_relative_bias": true,
+    "use_tok2mem": true,
+    "use_mem2tok": true,
+    "act_dim": 4,
+    "label_smoothing": 0.22,
+    "state_dim": 6
+  },
+  "training": {
+    "batch_size": 128,
+    "beta_1": 0.99,
+    "beta_2": 0.99,
+    "ckpt_epoch": 50,
+    "context_length": 35,
+    "epochs": 800,
+    "final_tokens": 10000000,
+    "grad_norm_clip": 5,
+    "learning_rate": 0.00012,
+    "log_last_segment_loss_only": false,
+    "lr_end_factor": 0.01,
+    "online_inference": true,
+    "sections": 3,
+    "use_cosine_decay": false,
+    "warmup_steps": 50000,
+    "weight_decay": 0.1,
+    "max_segments": 3
+  },
+  "comparison": [
+    {
+      "field": "model.act_dim",
+      "reference": 4,
+      "local": 4,
+      "matches": true
+    },
+    {
+      "field": "model.d_ff",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.d_model",
+      "reference": 64,
+      "local": 64,
+      "matches": true
+    },
+    {
+      "field": "model.detach_memory",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.dropatt",
+      "reference": 0.26,
+      "local": 0.26,
+      "matches": true
+    },
+    {
+      "field": "model.dropout",
+      "reference": 0.14,
+      "local": 0.14,
+      "matches": true
+    },
+    {
+      "field": "model.dtype",
+      "reference": "float32",
+      "local": "float32",
+      "matches": true
+    },
+    {
+      "field": "model.env_name",
+      "reference": "popgym-AutoencodeEasy",
+      "local": "popgym-AutoencodeEasy",
+      "matches": true
+    },
+    {
+      "field": "model.expert_dropout",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.label_smoothing",
+      "reference": 0.22,
+      "local": 0.22,
+      "matches": true
+    },
+    {
+      "field": "model.load_balancing_loss_coef",
+      "reference": 0.1,
+      "local": 0.1,
+      "matches": true
+    },
+    {
+      "field": "model.lru_blend_alpha",
+      "reference": 0.79,
+      "local": 0.79,
+      "matches": true
+    },
+    {
+      "field": "model.max_seq_len",
+      "reference": 1024,
+      "local": 1024,
+      "matches": true
+    },
+    {
+      "field": "model.memory_dropout",
+      "reference": 0.17,
+      "local": 0.17,
+      "matches": true
+    },
+    {
+      "field": "model.memory_init_std",
+      "reference": 0,
+      "local": 0,
+      "matches": true
+    },
+    {
+      "field": "model.memory_size",
+      "reference": 8,
+      "local": 8,
+      "matches": true
+    },
+    {
+      "field": "model.n_head",
+      "reference": 4,
+      "local": 4,
+      "matches": true
+    },
+    {
+      "field": "model.n_layer",
+      "reference": 12,
+      "local": 12,
+      "matches": true
+    },
+    {
+      "field": "model.n_shared_experts",
+      "reference": 2,
+      "local": 2,
+      "matches": true
+    },
+    {
+      "field": "model.norm_type",
+      "reference": "rmsnorm",
+      "local": "rmsnorm",
+      "matches": true
+    },
+    {
+      "field": "model.num_experts",
+      "reference": 1,
+      "local": 1,
+      "matches": true
+    },
+    {
+      "field": "model.padding_idx",
+      "reference": -10,
+      "local": -10,
+      "matches": true
+    },
+    {
+      "field": "model.pos_type",
+      "reference": "relative",
+      "local": "relative",
+      "matches": true
+    },
+    {
+      "field": "model.pre_lnorm",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.routed_d_ff",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.sequence_format",
+      "reference": "s",
+      "local": "s",
+      "matches": true
+    },
+    {
+      "field": "model.shared_d_ff",
+      "reference": 256,
+      "local": 256,
+      "matches": true
+    },
+    {
+      "field": "model.state_dim",
+      "reference": 6,
+      "local": 6,
+      "matches": true
+    },
+    {
+      "field": "model.top_k",
+      "reference": 1,
+      "local": 1,
+      "matches": true
+    },
+    {
+      "field": "model.train_stride",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.use_causal_self_attn_mask",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_lru",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_mem2tok",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_moe",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_relative_bias",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_shared_expert",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_shared_memory",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.use_swiglu",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.use_tok2mem",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "training.batch_size",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "training.beta_1",
+      "reference": 0.99,
+      "local": 0.99,
+      "matches": true
+    },
+    {
+      "field": "training.beta_2",
+      "reference": 0.99,
+      "local": 0.99,
+      "matches": true
+    },
+    {
+      "field": "training.checkpoint_every",
+      "reference": null,
+      "local": 300,
+      "matches": false
+    },
+    {
+      "field": "training.ckpt_epoch",
+      "reference": 50,
+      "local": 50,
+      "matches": true
+    },
+    {
+      "field": "training.context_length",
+      "reference": 35,
+      "local": 35,
+      "matches": true
+    },
+    {
+      "field": "training.epochs",
+      "reference": 800,
+      "local": 800,
+      "matches": true
+    },
+    {
+      "field": "training.eval_every",
+      "reference": null,
+      "local": 600,
+      "matches": false
+    },
+    {
+      "field": "training.final_tokens",
+      "reference": 10000000,
+      "local": 10000000,
+      "matches": true
+    },
+    {
+      "field": "training.grad_norm_clip",
+      "reference": 5,
+      "local": 5,
+      "matches": true
+    },
+    {
+      "field": "training.learning_rate",
+      "reference": 0.00012,
+      "local": 0.00012,
+      "matches": true
+    },
+    {
+      "field": "training.log_last_segment_loss_only",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "training.lr_end_factor",
+      "reference": 0.01,
+      "local": 0.01,
+      "matches": true
+    },
+    {
+      "field": "training.max_segments",
+      "reference": 3,
+      "local": 3,
+      "matches": true
+    },
+    {
+      "field": "training.online_inference",
+      "reference": true,
+      "local": false,
+      "matches": false
+    },
+    {
+      "field": "training.optimizer_updates",
+      "reference": null,
+      "local": 57600,
+      "matches": false
+    },
+    {
+      "field": "training.sections",
+      "reference": 3,
+      "local": 3,
+      "matches": true
+    },
+    {
+      "field": "training.source",
+      "reference": null,
+      "local": "fresh_native_oracle",
+      "matches": false
+    },
+    {
+      "field": "training.use_cosine_decay",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "training.warmup_steps",
+      "reference": 50000,
+      "local": 50000,
+      "matches": true
+    },
+    {
+      "field": "training.weight_decay",
+      "reference": 0.1,
+      "local": 0.1,
+      "matches": true
+    }
+  ],
+  "explicit_cli_repairs": {
+    "use_tok2mem": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_mem2tok": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_relative_bias": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_shared_memory": {
+      "literal_cli": null,
+      "local": false
+    }
+  },
+  "cli_default_caveat": "src/train.py passes optional None flags through to ELMURModel; the native commands omit use_tok2mem/use_mem2tok/use_relative_bias. This repair explicitly uses model defaults True for a functioning memory system, not the literal CLI None overrides. use_shared_memory is explicitly False."
+}

@@ -1,10 +1,19 @@
-# ELMUR-KLPO: Steps 1 and 2
+# ELMUR-KLPO: Steps 1–3
 
 An exactly enumerable, float64 PyTorch experiment verifies the categorical
 RTG-KLPO memory-manager gradient from [step_1_plan.md](step_1_plan.md).
 Step 2 adds single-reader manager training with the authors' ELMUR model and
 T-Maze demonstrations. See [implementation and commands](step_2_implementation.md)
 and [measured three-seed results](step_2_results.md).
+
+Step 3's repair implements execution items 1–3 of [step_3_fix.md](step_3_fix.md):
+pinned upstream task-specific readers, fixed-LRU imitation preparation, and
+independent deterministic parity/resume smoke tests. Full reader preparation
+has **not** run. Learned-manager integration and comparisons remain gated.
+See the [new implementation report](step_3_implementation.md) for commands,
+configuration differences, write/gradient audits, and unfinished work. The
+[previous implementation](step_3_implementation_legacy.md) and
+[historical results](step_3_results.md) remain available unchanged.
 
 The [ELMUR authors' implementation](https://github.com/CognitiveAISystems/RATE/tree/main/offline_rl_baselines/ELMUR)
 is the architectural reference. Pinned MIT-licensed components are vendored for
@@ -21,8 +30,19 @@ uv run pytest
 This single command installs the locked environment and runs all prescribed
 tests, including A–G and finite differences for every parameter. Python 3.12 is
 pinned in `.python-version`; uv can provision it if needed. Linux and Windows
-use CPU PyTorch wheels. Step 2 also uses NumPy, Gym, and tqdm for the authors'
+use CUDA 12.8 PyTorch wheels from the official PyTorch index. GPU execution
+requires a compatible NVIDIA driver and GPU access; CPU execution remains
+available. Verify the installed build and GPU availability with:
+
+```bash
+uv run python -c "import torch; print(torch.__version__, torch.version.cuda, torch.cuda.is_available())"
+```
+
+Step 2 also uses NumPy, Gymnasium, and tqdm for the authors'
 T-Maze generator; pytest and Ruff are development dependencies.
+Step 3 also installs pinned POPGym/Gymnasium. MIKASA runs in a separately
+provisioned interpreter because its upstream dependencies conflict with the
+main runtime. The adapter always uses the native robot task.
 
 Print the numerical verification report:
 

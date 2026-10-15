@@ -1,0 +1,29 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "task": "autoencode",
+  "max_gradient_absolute_error": 0.0,
+  "gradient_audit": "No prediction gradients reach any layer's memory_ffn under detached section history. Writer MoE auxiliary gradients retained exactly; normalized top-1 routing can yield zero/nearly-zero gradient. No added supervision or BPTT.",
+  "sections": [
+    {
+      "section": 0,
+      "action_loss": -0.0,
+      "moe_aux_loss": 2.4000003337860107,
+      "writer_aux_gradient_norm": 0.0,
+      "writer_task_gradient_parameters": 0
+    },
+    {
+      "section": 1,
+      "action_loss": 1.514421820640564,
+      "moe_aux_loss": 2.4000003337860107,
+      "writer_aux_gradient_norm": 0.0,
+      "writer_task_gradient_parameters": 0
+    },
+    {
+      "section": 2,
+      "action_loss": 1.5205928087234497,
+      "moe_aux_loss": 2.4000003337860107,
+      "writer_aux_gradient_norm": 0.0,
+      "writer_task_gradient_parameters": 0
+    }
+  ]
+}

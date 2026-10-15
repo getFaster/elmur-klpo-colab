@@ -1,0 +1,143 @@
+{
+  "step": 3,
+  "cpu_threads": 1,
+  "stage": "smoke",
+  "tasks": [
+    {
+      "step": 3,
+      "task": {
+        "name": "autoencode",
+        "target": 52
+      },
+      "reader": {
+        "slots": 2,
+        "dimension": 16,
+        "memory_init_std": 0.0,
+        "native_lambda": 0.79,
+        "action_std": 0.2
+      },
+      "reader_seed": 17,
+      "data_seed": 1000,
+      "paper_retention": 0.2,
+      "preparation": {
+        "learning_rate": 0.002,
+        "batch_size": 4,
+        "reconstruction_weight": 0.1,
+        "eval_every": 2,
+        "curriculum": [
+          {
+            "updates": 2,
+            "difficulty": 2
+          },
+          {
+            "updates": 2,
+            "difficulty": 8
+          },
+          {
+            "updates": 2,
+            "difficulty": 52
+          }
+        ]
+      },
+      "manager": {
+        "learning_rate": 0.001,
+        "gradient_clip": 5.0,
+        "gamma": 1.0,
+        "updates": 2,
+        "batch_size": 4,
+        "eval_every": 1,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "variants": [
+          "full",
+          "slot_only",
+          "coefficient_only"
+        ]
+      },
+      "evaluation": {
+        "episodes": 16,
+        "memory_gate_margin": 0.0,
+        "noninferiority_margin": 0.05
+      },
+      "robustness": {
+        "difficulties": [
+          52,
+          78,
+          104
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "task": {
+        "name": "remember_color",
+        "target": 5,
+        "native_python": null,
+        "sim_backend": "cpu"
+      },
+      "reader": {
+        "slots": 2,
+        "dimension": 16,
+        "memory_init_std": 0.1,
+        "native_lambda": 0.40683708068133906,
+        "action_std": 0.2
+      },
+      "reader_seed": 17,
+      "data_seed": 1000,
+      "paper_retention": 0.6,
+      "preparation": {
+        "learning_rate": 0.002,
+        "batch_size": 4,
+        "reconstruction_weight": 0.1,
+        "eval_every": 2,
+        "curriculum": [
+          {
+            "updates": 2,
+            "difficulty": 1
+          },
+          {
+            "updates": 2,
+            "difficulty": 3
+          },
+          {
+            "updates": 2,
+            "difficulty": 5
+          }
+        ]
+      },
+      "manager": {
+        "learning_rate": 0.001,
+        "gradient_clip": 5.0,
+        "gamma": 1.0,
+        "updates": 2,
+        "batch_size": 4,
+        "eval_every": 1,
+        "seeds": [
+          1,
+          2,
+          3
+        ],
+        "variants": [
+          "full",
+          "slot_only",
+          "coefficient_only"
+        ]
+      },
+      "evaluation": {
+        "episodes": 16,
+        "memory_gate_margin": 0.0,
+        "noninferiority_margin": 0.05
+      },
+      "robustness": {
+        "difficulties": [
+          5,
+          10,
+          20
+        ]
+      }
+    }
+  ]
+}

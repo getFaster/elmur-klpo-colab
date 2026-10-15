@@ -1,0 +1,29 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "task": "remember_color",
+  "max_gradient_absolute_error": 0.0,
+  "gradient_audit": "No prediction gradients reach any layer's memory_ffn under detached section history. Writer MoE auxiliary gradients retained exactly; normalized top-1 routing can yield zero/nearly-zero gradient. No added supervision or BPTT.",
+  "sections": [
+    {
+      "section": 0,
+      "action_loss": 1.2454736232757568,
+      "moe_aux_loss": 4.646761417388916,
+      "writer_aux_gradient_norm": 3.0347405495328013e-08,
+      "writer_task_gradient_parameters": 0
+    },
+    {
+      "section": 1,
+      "action_loss": 1.0005799531936646,
+      "moe_aux_loss": 5.527419090270996,
+      "writer_aux_gradient_norm": 1.7609569948552984e-08,
+      "writer_task_gradient_parameters": 0
+    },
+    {
+      "section": 2,
+      "action_loss": 1.0133787393569946,
+      "moe_aux_loss": 5.1532816886901855,
+      "writer_aux_gradient_norm": 4.706897244349707e-08,
+      "writer_task_gradient_parameters": 0
+    }
+  ]
+}

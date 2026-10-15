@@ -8,6 +8,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
+from tqdm import tqdm
 
 from elmur_klpo.demonstrations import Demonstrations, tmaze_demonstrations
 from elmur_klpo.evaluation import closed_loop
@@ -60,35 +61,42 @@ def pretrain(
     """
     reader.train().requires_grad_(True)
     optimizer = torch.optim.Adam(reader.parameters(), lr=0.002)
-    for iteration in range(steps):
-        indices = torch.randint(
-            len(train.actions), (batch_size,), device=train.actions.device
-        )
-        batch = train.select(indices)
-        memory = reader.initial(batch_size)
-        total = 0
-        for time_index in range(batch.actions.shape[1]):
-            logits, _, _, native = reader.step(
-                batch.observations[:, time_index], memory, time_index
+    with tqdm(
+        total=steps, desc="Reader tmaze", unit="update", dynamic_ncols=True
+    ) as progress:
+        for iteration in range(steps):
+            indices = torch.randint(
+                len(train.actions), (batch_size,), device=train.actions.device
             )
-            loss = torch.nn.functional.cross_entropy(
-                logits, batch.actions[:, time_index], reduction="none"
+            batch = train.select(indices)
+            memory = reader.initial(batch_size)
+            total = 0
+            for time_index in range(batch.actions.shape[1]):
+                logits, _, _, native = reader.step(
+                    batch.observations[:, time_index], memory, time_index
+                )
+                loss = torch.nn.functional.cross_entropy(
+                    logits, batch.actions[:, time_index], reduction="none"
+                )
+                total = (
+                    total
+                    + (loss * batch.valid[:, time_index]).sum() / batch.valid.sum()
+                )
+                memory = MemoryState(native.vec.detach(), native.pos)
+            optimizer.zero_grad(set_to_none=True)
+            total.backward()
+            torch.nn.utils.clip_grad_norm_(
+                reader.parameters(), 5, error_if_nonfinite=True
             )
-            total = (
-                total + (loss * batch.valid[:, time_index]).sum() / batch.valid.sum()
-            )
-            memory = MemoryState(native.vec.detach(), native.pos)
-        optimizer.zero_grad(set_to_none=True)
-        total.backward()
-        torch.nn.utils.clip_grad_norm_(reader.parameters(), 5, error_if_nonfinite=True)
-        optimizer.step()
-        if (iteration + 1) % 100 == 0:
-            print(
-                json.dumps(
-                    {"reader_step": iteration + 1, "bc_nll": float(total.detach())}
-                ),
-                flush=True,
-            )
+            optimizer.step()
+            if (iteration + 1) % 100 == 0:
+                tqdm.write(
+                    json.dumps(
+                        {"reader_step": iteration + 1, "bc_nll": float(total.detach())}
+                    )
+                )
+            progress.set_postfix(loss=f"{float(total.detach()):.4f}", refresh=False)
+            progress.update(1)
     reader.freeze()
 
 
@@ -211,70 +219,83 @@ def run(config: dict, output: Path, resume: bool = False, device: str = "cpu") -
                 begin = saved["iteration"]
                 history = saved["extra"]["history"]
                 before = saved["extra"]["before"]
-            for iteration in range(begin, config["manager_steps"]):
-                indices = torch.randint(
-                    len(train.actions), (config["batch_size"],), device=device
-                )
-                batch_data = train.select(indices)
-                if device.startswith("cuda"):
-                    torch.cuda.synchronize()
-                    torch.cuda.reset_peak_memory_stats()
-                start = time.perf_counter()
-                batch = collect(reader, batch_data, manager.frozen_copy())
-                if device.startswith("cuda"):
-                    torch.cuda.synchronize()
-                rollout_seconds = time.perf_counter() - start
-                diagnostic = update(
-                    manager, optimizer, batch, algorithm, config["beta"]
-                )
-                diagnostic.update(
-                    {
-                        "iteration": iteration + 1,
-                        "rollout_seconds": rollout_seconds,
-                        "decision_throughput": float(batch.valid.sum())
-                        / rollout_seconds,
-                        "peak_gpu_bytes": torch.cuda.max_memory_allocated()
-                        if device.startswith("cuda")
-                        else 0,
-                        "rollout_metrics": metrics(batch, batch_data, config["slots"]),
-                    }
-                )
-                if (iteration + 1) % config[
-                    "eval_every"
-                ] == 0 or iteration + 1 == config["manager_steps"]:
-                    # Evaluation must not alter the next training sample stream.
-                    rng = torch.get_rng_state()
-                    numpy_rng = np.random.get_state()
-                    python_rng = random.getstate()
-                    cuda_rng = (
-                        torch.cuda.get_rng_state_all()
-                        if device.startswith("cuda")
-                        else None
+            with tqdm(
+                total=config["manager_steps"],
+                initial=begin,
+                desc=f"Manager tmaze {algorithm} seed {seed}",
+                unit="update",
+                dynamic_ncols=True,
+            ) as progress:
+                for iteration in range(begin, config["manager_steps"]):
+                    indices = torch.randint(
+                        len(train.actions), (config["batch_size"],), device=device
                     )
-                    seed_everything(seed + 10000)
-                    diagnostic["held_out"] = metrics(
-                        collect(reader, validation, manager),
-                        validation,
-                        config["slots"],
+                    batch_data = train.select(indices)
+                    if device.startswith("cuda"):
+                        torch.cuda.synchronize()
+                        torch.cuda.reset_peak_memory_stats()
+                    start = time.perf_counter()
+                    batch = collect(reader, batch_data, manager.frozen_copy())
+                    if device.startswith("cuda"):
+                        torch.cuda.synchronize()
+                    rollout_seconds = time.perf_counter() - start
+                    diagnostic = update(
+                        manager, optimizer, batch, algorithm, config["beta"]
                     )
-                    torch.set_rng_state(rng)
-                    np.random.set_state(numpy_rng)
-                    random.setstate(python_rng)
-                    if cuda_rng is not None:
-                        torch.cuda.set_rng_state_all(cuda_rng)
-                history.append(diagnostic)
-                save_checkpoint(
-                    checkpoint_path,
-                    manager,
-                    optimizer,
-                    iteration + 1,
-                    {
-                        "config": config,
-                        "history": history,
-                        "before": before,
-                        "reader_state": reader.state_dict(),
-                    },
-                )
+                    diagnostic.update(
+                        {
+                            "iteration": iteration + 1,
+                            "rollout_seconds": rollout_seconds,
+                            "decision_throughput": float(batch.valid.sum())
+                            / rollout_seconds,
+                            "peak_gpu_bytes": torch.cuda.max_memory_allocated()
+                            if device.startswith("cuda")
+                            else 0,
+                            "rollout_metrics": metrics(
+                                batch, batch_data, config["slots"]
+                            ),
+                        }
+                    )
+                    if (iteration + 1) % config[
+                        "eval_every"
+                    ] == 0 or iteration + 1 == config["manager_steps"]:
+                        # Evaluation must not alter the next training sample stream.
+                        rng = torch.get_rng_state()
+                        numpy_rng = np.random.get_state()
+                        python_rng = random.getstate()
+                        cuda_rng = (
+                            torch.cuda.get_rng_state_all()
+                            if device.startswith("cuda")
+                            else None
+                        )
+                        seed_everything(seed + 10000)
+                        diagnostic["held_out"] = metrics(
+                            collect(reader, validation, manager),
+                            validation,
+                            config["slots"],
+                        )
+                        torch.set_rng_state(rng)
+                        np.random.set_state(numpy_rng)
+                        random.setstate(python_rng)
+                        if cuda_rng is not None:
+                            torch.cuda.set_rng_state_all(cuda_rng)
+                    history.append(diagnostic)
+                    save_checkpoint(
+                        checkpoint_path,
+                        manager,
+                        optimizer,
+                        iteration + 1,
+                        {
+                            "config": config,
+                            "history": history,
+                            "before": before,
+                            "reader_state": reader.state_dict(),
+                        },
+                    )
+                    progress.set_postfix(
+                        gradient=f"{diagnostic['gradient_norm']:.3g}", refresh=False
+                    )
+                    progress.update(1)
             seed_everything(seed + 10000)
             after = metrics(collect(reader, test, manager), test, config["slots"])
             seed_everything(seed + 10000)
@@ -317,7 +338,21 @@ def main() -> None:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--device", default="cpu")
     args = parser.parse_args()
-    run(json.loads(args.config.read_text()), args.output, args.resume, args.device)
+    config = json.loads(args.config.read_text())
+    if config.get("step") == 3:
+        from elmur_klpo.step3.experiment import run as run_step3
+
+        result = run_step3(config, args.output, args.resume, args.device)
+        if any(
+            task["status"] in {"reader_gate_failed", "native_task_unavailable"}
+            for task in result["tasks"].values()
+        ):
+            parser.exit(
+                2,
+                "Step 3 stopped at a validation or native-runtime gate; inspect the saved results.\n",
+            )
+    else:
+        run(config, args.output, args.resume, args.device)
 
 
 if __name__ == "__main__":

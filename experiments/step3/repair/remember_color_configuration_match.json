@@ -1,0 +1,459 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "command_source": "run_experiments/MIKASA_Robo/ELMUR_1/rc3.sh",
+  "command": "python3 src/train.py --data.gamma=1 --data.path-to-dataset=datasets/data_mikasa_robo/MIKASA-Robo/unbatched/RememberColor3-v0 --dtype=float32 --end-seed=1 --model-mode=ELMUR --model.act-dim=8 --model.d-ff=128 --model.d-model=128 --model.detach-memory=True --model.dropatt=0.29604715763026573 --model.dropout=0.1266135150715325 --model.env-name=mikasa_robo_RememberColor3-v0 --model.label-smoothing=0.20901542191561256 --model.load-balancing-loss-coef=0.1 --model.lru-blend-alpha=0.40683708068133906 --model.max-seq-len=1024 --model.memory-dropout=0.05486068387428239 --model.memory-init-std=0.1 --model.memory-size=256 --model.n-head=16 --model.n-layer=4 --model.n-shared-experts=1 --model.num-experts=16 --model.padding-idx=None --model.pos-type=relative --model.pre-lnorm=False --model.routed-d-ff=128 --model.sequence-format=s --model.shared-d-ff=128 --model.state-dim=6 --model.top-k=2 --model.use-causal-self-attn-mask=True --model.use-lru=True --model.use-moe=True --model.use-shared-expert=True --model.use-swiglu=False --online-inference.best_checkpoint_metric=success_once --online-inference.desired-return-1=60 --online-inference.episode-timeout=60 --online-inference.use-argmax=True --start-seed=1 --tensorboard-dir=runs/MIKASA_Robo/RememberColor3-v0 --text=my-experiment-v2 --training.batch-size=64 --training.beta-1=0.99 --training.beta-2=0.99 --training.ckpt-epoch=20 --training.context-length=20 --training.epochs=200 --training.final-tokens=10000000 --training.grad-norm-clip=5 --training.learning-rate=0.00020459570733760105 --training.log-last-segment-loss-only=False --training.lr-end-factor=0.1 --training.online-inference=True --training.sections=3 --training.use-cosine-decay=True --training.warmup-steps=30000 --training.weight-decay=0.001 --wandb.project-name=ELMUR-MIKASA-Robo --wandb.wwandb=True",
+  "model": {
+    "d_model": 128,
+    "d_ff": 128,
+    "n_layer": 4,
+    "n_head": 16,
+    "max_seq_len": 1024,
+    "dropout": 0.1266135150715325,
+    "dropatt": 0.29604715763026573,
+    "pre_lnorm": false,
+    "memory_size": 256,
+    "env_name": "mikasa_robo_RememberColor3-v0",
+    "memory_init_std": 0.1,
+    "detach_memory": true,
+    "use_causal_self_attn_mask": true,
+    "use_lru": true,
+    "lru_blend_alpha": 0.40683708068133906,
+    "pos_type": "relative",
+    "train_stride": null,
+    "padding_idx": null,
+    "memory_dropout": 0.05486068387428239,
+    "dtype": "float32",
+    "sequence_format": "s",
+    "norm_type": null,
+    "use_moe": true,
+    "num_experts": 16,
+    "top_k": 2,
+    "expert_dropout": null,
+    "load_balancing_loss_coef": 0.1,
+    "use_swiglu": false,
+    "use_shared_expert": true,
+    "n_shared_experts": 1,
+    "shared_d_ff": 128,
+    "routed_d_ff": 128,
+    "use_shared_memory": false,
+    "use_relative_bias": true,
+    "use_tok2mem": true,
+    "use_mem2tok": true,
+    "act_dim": 8,
+    "label_smoothing": 0.20901542191561256,
+    "state_dim": 6
+  },
+  "training": {
+    "batch_size": 64,
+    "beta_1": 0.99,
+    "beta_2": 0.99,
+    "ckpt_epoch": 20,
+    "context_length": 20,
+    "epochs": 200,
+    "final_tokens": 10000000,
+    "grad_norm_clip": 5,
+    "learning_rate": 0.00020459570733760105,
+    "log_last_segment_loss_only": false,
+    "lr_end_factor": 0.1,
+    "online_inference": true,
+    "sections": 3,
+    "use_cosine_decay": true,
+    "warmup_steps": 30000,
+    "weight_decay": 0.001,
+    "max_segments": 3
+  },
+  "comparison": [
+    {
+      "field": "model.act_dim",
+      "reference": 8,
+      "local": 8,
+      "matches": true
+    },
+    {
+      "field": "model.d_ff",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.d_model",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.detach_memory",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.dropatt",
+      "reference": 0.29604715763026573,
+      "local": 0.29604715763026573,
+      "matches": true
+    },
+    {
+      "field": "model.dropout",
+      "reference": 0.1266135150715325,
+      "local": 0.1266135150715325,
+      "matches": true
+    },
+    {
+      "field": "model.dtype",
+      "reference": "float32",
+      "local": "float32",
+      "matches": true
+    },
+    {
+      "field": "model.env_name",
+      "reference": "mikasa_robo_RememberColor3-v0",
+      "local": "mikasa_robo_RememberColor3-v0",
+      "matches": true
+    },
+    {
+      "field": "model.expert_dropout",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.label_smoothing",
+      "reference": 0.20901542191561256,
+      "local": 0.20901542191561256,
+      "matches": true
+    },
+    {
+      "field": "model.load_balancing_loss_coef",
+      "reference": 0.1,
+      "local": 0.1,
+      "matches": true
+    },
+    {
+      "field": "model.lru_blend_alpha",
+      "reference": 0.40683708068133906,
+      "local": 0.40683708068133906,
+      "matches": true
+    },
+    {
+      "field": "model.max_seq_len",
+      "reference": 1024,
+      "local": 1024,
+      "matches": true
+    },
+    {
+      "field": "model.memory_dropout",
+      "reference": 0.05486068387428239,
+      "local": 0.05486068387428239,
+      "matches": true
+    },
+    {
+      "field": "model.memory_init_std",
+      "reference": 0.1,
+      "local": 0.1,
+      "matches": true
+    },
+    {
+      "field": "model.memory_size",
+      "reference": 256,
+      "local": 256,
+      "matches": true
+    },
+    {
+      "field": "model.n_head",
+      "reference": 16,
+      "local": 16,
+      "matches": true
+    },
+    {
+      "field": "model.n_layer",
+      "reference": 4,
+      "local": 4,
+      "matches": true
+    },
+    {
+      "field": "model.n_shared_experts",
+      "reference": 1,
+      "local": 1,
+      "matches": true
+    },
+    {
+      "field": "model.norm_type",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.num_experts",
+      "reference": 16,
+      "local": 16,
+      "matches": true
+    },
+    {
+      "field": "model.padding_idx",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.pos_type",
+      "reference": "relative",
+      "local": "relative",
+      "matches": true
+    },
+    {
+      "field": "model.pre_lnorm",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.routed_d_ff",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.sequence_format",
+      "reference": "s",
+      "local": "s",
+      "matches": true
+    },
+    {
+      "field": "model.shared_d_ff",
+      "reference": 128,
+      "local": 128,
+      "matches": true
+    },
+    {
+      "field": "model.state_dim",
+      "reference": 6,
+      "local": 6,
+      "matches": true
+    },
+    {
+      "field": "model.top_k",
+      "reference": 2,
+      "local": 2,
+      "matches": true
+    },
+    {
+      "field": "model.train_stride",
+      "reference": null,
+      "local": null,
+      "matches": true
+    },
+    {
+      "field": "model.use_causal_self_attn_mask",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_lru",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_mem2tok",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_moe",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_relative_bias",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_shared_expert",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "model.use_shared_memory",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.use_swiglu",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "model.use_tok2mem",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "training.batch_size",
+      "reference": 64,
+      "local": 64,
+      "matches": true
+    },
+    {
+      "field": "training.beta_1",
+      "reference": 0.99,
+      "local": 0.99,
+      "matches": true
+    },
+    {
+      "field": "training.beta_2",
+      "reference": 0.99,
+      "local": 0.99,
+      "matches": true
+    },
+    {
+      "field": "training.checkpoint_every",
+      "reference": null,
+      "local": 300,
+      "matches": false
+    },
+    {
+      "field": "training.ckpt_epoch",
+      "reference": 20,
+      "local": 20,
+      "matches": true
+    },
+    {
+      "field": "training.context_length",
+      "reference": 20,
+      "local": 20,
+      "matches": true
+    },
+    {
+      "field": "training.demonstrations",
+      "reference": null,
+      "local": {
+        "directory": "runs/step3_data/remember_color_original/RememberColor3-v0",
+        "manifest": "experiments/step3/remember_color_dataset.json",
+        "train_episodes": 800,
+        "validation_episodes": 100,
+        "test_episodes": 100,
+        "action_target": "raw"
+      },
+      "matches": false
+    },
+    {
+      "field": "training.epochs",
+      "reference": 200,
+      "local": 200,
+      "matches": true
+    },
+    {
+      "field": "training.eval_every",
+      "reference": null,
+      "local": 300,
+      "matches": false
+    },
+    {
+      "field": "training.final_tokens",
+      "reference": 10000000,
+      "local": 10000000,
+      "matches": true
+    },
+    {
+      "field": "training.grad_norm_clip",
+      "reference": 5,
+      "local": 5,
+      "matches": true
+    },
+    {
+      "field": "training.learning_rate",
+      "reference": 0.00020459570733760105,
+      "local": 0.00020459570733760105,
+      "matches": true
+    },
+    {
+      "field": "training.log_last_segment_loss_only",
+      "reference": false,
+      "local": false,
+      "matches": true
+    },
+    {
+      "field": "training.lr_end_factor",
+      "reference": 0.1,
+      "local": 0.1,
+      "matches": true
+    },
+    {
+      "field": "training.max_segments",
+      "reference": 3,
+      "local": 3,
+      "matches": true
+    },
+    {
+      "field": "training.online_inference",
+      "reference": true,
+      "local": false,
+      "matches": false
+    },
+    {
+      "field": "training.optimizer_updates",
+      "reference": null,
+      "local": 9600,
+      "matches": false
+    },
+    {
+      "field": "training.sections",
+      "reference": 3,
+      "local": 3,
+      "matches": true
+    },
+    {
+      "field": "training.source",
+      "reference": null,
+      "local": "offline_demonstrations",
+      "matches": false
+    },
+    {
+      "field": "training.use_cosine_decay",
+      "reference": true,
+      "local": true,
+      "matches": true
+    },
+    {
+      "field": "training.warmup_steps",
+      "reference": 30000,
+      "local": 30000,
+      "matches": true
+    },
+    {
+      "field": "training.weight_decay",
+      "reference": 0.001,
+      "local": 0.001,
+      "matches": true
+    }
+  ],
+  "explicit_cli_repairs": {
+    "use_tok2mem": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_mem2tok": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_relative_bias": {
+      "literal_cli": null,
+      "local": true
+    },
+    "use_shared_memory": {
+      "literal_cli": null,
+      "local": false
+    }
+  },
+  "cli_default_caveat": "src/train.py passes optional None flags through to ELMURModel; the native commands omit use_tok2mem/use_mem2tok/use_relative_bias. This repair explicitly uses model defaults True for a functioning memory system, not the literal CLI None overrides. use_shared_memory is explicitly False."
+}

@@ -1,0 +1,124 @@
+{
+  "acquired_on": "2026-10-13",
+  "dataset_repository": "avanturist/mikasa-robo",
+  "source_url": "https://huggingface.co/datasets/avanturist/mikasa-robo",
+  "task": "RememberColor3-v0",
+  "revision": "c362f52143c61e7f778bdb5d410ce4c22a7185d4",
+  "archive_name": "RememberColor3-v0.zip",
+  "sha256": "388b16d0984cb19d6a6cd20fe0029a67fef100aed378a195435f1f0acf5b7d82",
+  "archive_bytes": 4260839071,
+  "checksum_matches_published_lfs": true,
+  "extracted_bytes": 5908838000,
+  "data_directory": "/home/user/ELMUR-KLPO/runs/step3_data/remember_color_original/RememberColor3-v0",
+  "trajectory_count": 1000,
+  "transition_count": 60000,
+  "episode_lengths": {
+    "60": 1000
+  },
+  "keys_present_count": {
+    "rgb": 1000,
+    "joints": 1000,
+    "action": 1000,
+    "reward": 1000,
+    "success": 1000,
+    "done": 1000
+  },
+  "array_shapes": {
+    "rgb": [
+      [
+        60,
+        128,
+        128,
+        6
+      ]
+    ],
+    "joints": [
+      [
+        60,
+        25
+      ]
+    ],
+    "action": [
+      [
+        60,
+        8
+      ]
+    ],
+    "reward": [
+      [
+        60
+      ]
+    ],
+    "success": [
+      [
+        60
+      ]
+    ],
+    "done": [
+      [
+        60
+      ]
+    ]
+  },
+  "array_dtypes": {
+    "rgb": [
+      "uint8"
+    ],
+    "joints": [
+      "float32"
+    ],
+    "action": [
+      "float32"
+    ],
+    "reward": [
+      "float32"
+    ],
+    "success": [
+      "int64"
+    ],
+    "done": [
+      "int64"
+    ]
+  },
+  "rgb_range": [
+    0,
+    255
+  ],
+  "action_range": [
+    -1.1742109060287476,
+    1.6330119371414185
+  ],
+  "action_elements_outside_minus1_plus1": 11177,
+  "action_element_count": 480000,
+  "successful_episodes_by_any_recorded_success": 1000,
+  "success_once_fraction": 1.0,
+  "episodes_with_done_on_last_frame": 1000,
+  "episodes_with_any_done": 1000,
+  "reward_range": [
+    0.00010583798575680703,
+    1.0
+  ],
+  "recorded_episode_return": {
+    "mean": 29.51771602140786,
+    "std": 4.680645129575361,
+    "min": 11.42607335178036,
+    "max": 37.493991744486266
+  },
+  "validation_seconds": 6.289565609011333,
+  "validation": "All 1000 files read with allow_pickle=False; schema, shapes, finite numeric values and binary success/done checked; archive SHA256 and extraction CRC verified",
+  "training_performed": false,
+  "renderer_needed_for_download_or_validation": false,
+  "limitations": [
+    "Data retrieval does not establish prepared-reader memory dependence or closed-loop manager performance.",
+    "Dataset provenance is the original published RL release; exact correspondence to ELMUR training/test splits is not established.",
+    "Stored actions include values outside [-1,1]; reconcile upstream execution clipping/scaling with bounded reader targets explicitly.",
+    "No explicit episode seed field is present; filename-disjoint splits do not establish seed-disjoint collection."
+  ],
+  "archive_path": "/home/user/ELMUR-KLPO/runs/step3_data/remember_color_download/RememberColor3-v0.zip",
+  "done_flags_per_episode": {
+    "1": 1000
+  },
+  "explicit_episode_seed_field_available": false,
+  "download_seconds": 58.87,
+  "download_library": "huggingface_hub 2.2.0"
+}

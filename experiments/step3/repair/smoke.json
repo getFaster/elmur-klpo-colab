@@ -1,0 +1,459 @@
+{
+  "runs": [
+    {
+      "source": "runs/step3_repair_final_smoke",
+      "outcome": "not_evaluated",
+      "tasks": {
+        "autoencode": {
+          "status": "upstream_parity_smoke_passed",
+          "parity": {
+            "passed": true,
+            "source_integrity": {
+              "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+              "verified_files": 23
+            },
+            "task": "autoencode",
+            "batch_size": 2,
+            "completed_optimizer_steps_per_implementation": 3,
+            "initial_memory_std": 0.0,
+            "max_gradient_absolute_error": 0.0,
+            "sections": [
+              {
+                "section": 0,
+                "logits_shape": [
+                  2,
+                  35,
+                  4
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  34,
+                  -1,
+                  -1
+                ],
+                "valid_targets": 0,
+                "action_loss": -0.0,
+                "moe_aux_loss": 2.4000003337860107,
+                "writer_aux_gradient_norm": 0.0,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 4.800000000000001e-09
+              },
+              {
+                "section": 1,
+                "logits_shape": [
+                  2,
+                  35,
+                  4
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  34,
+                  69,
+                  -1
+                ],
+                "valid_targets": 38,
+                "action_loss": 1.514421820640564,
+                "moe_aux_loss": 2.4000003337860107,
+                "writer_aux_gradient_norm": 0.0,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 7.2e-09
+              },
+              {
+                "section": 2,
+                "logits_shape": [
+                  2,
+                  35,
+                  4
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ],
+                  [
+                    2,
+                    8,
+                    64
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  34,
+                  69,
+                  104
+                ],
+                "valid_targets": 66,
+                "action_loss": 1.5205928087234497,
+                "moe_aux_loss": 2.4000003337860107,
+                "writer_aux_gradient_norm": 0.0,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 9.600000000000002e-09
+              }
+            ],
+            "gradient_audit": "No prediction gradients reach any layer's memory_ffn under detached section history. Writer MoE auxiliary gradients retained exactly; normalized top-1 routing can yield zero/nearly-zero gradient. No added supervision or BPTT.",
+            "device": "cpu"
+          },
+          "checkpoint_resume": {
+            "passed": true,
+            "interrupted_after_optimizer_steps": 1,
+            "resumed_at_section": 1,
+            "final_optimizer_steps": 3,
+            "parameters_bitwise_equal": true,
+            "history_equal": true,
+            "validation_equal": true
+          },
+          "scope": "Full architecture and complete three-section minibatch; parity batch two, resume batch one; synthetic RememberColor RGB/actions, native full-length Autoencode episodes. No full-budget reader preparation, reproduction learning/readiness gate, or manager experiment.",
+          "full_budget_reader_preparation_started": false,
+          "compute": {
+            "total_wall_seconds_including_checkpoint_io": 10.839238959975773,
+            "model_forward_passes": 24,
+            "optimizer_steps_local_and_reference_parity": 6,
+            "optimizer_steps_resume_verification": 6,
+            "gpu_step_seconds": 0.0,
+            "peak_gpu_bytes": 0,
+            "validation_seconds": 0.40973539897822775,
+            "unique_training_episodes_in_preparation_fixture": 1,
+            "training_sample_presentations_in_preparation_fixtures": 2
+          }
+        },
+        "remember_color": {
+          "status": "upstream_parity_smoke_passed",
+          "parity": {
+            "passed": true,
+            "source_integrity": {
+              "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+              "verified_files": 23
+            },
+            "task": "remember_color",
+            "batch_size": 2,
+            "completed_optimizer_steps_per_implementation": 3,
+            "initial_memory_std": 0.09997992217540741,
+            "max_gradient_absolute_error": 0.0,
+            "sections": [
+              {
+                "section": 0,
+                "logits_shape": [
+                  2,
+                  20,
+                  8
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  19,
+                  -1,
+                  -1
+                ],
+                "valid_targets": 40,
+                "action_loss": 1.2454736232757568,
+                "moe_aux_loss": 4.646761417388916,
+                "writer_aux_gradient_norm": 3.0347405495328013e-08,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 1.091177105800539e-06
+              },
+              {
+                "section": 1,
+                "logits_shape": [
+                  2,
+                  20,
+                  8
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  19,
+                  39,
+                  -1
+                ],
+                "valid_targets": 40,
+                "action_loss": 1.0005799531936646,
+                "moe_aux_loss": 5.527419090270996,
+                "writer_aux_gradient_norm": 1.7609569948552984e-08,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 2.182354211601078e-06
+              },
+              {
+                "section": 2,
+                "logits_shape": [
+                  2,
+                  20,
+                  8
+                ],
+                "memory_shapes": [
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ],
+                  [
+                    2,
+                    256,
+                    128
+                  ]
+                ],
+                "timestamps_first_slots": [
+                  19,
+                  39,
+                  59
+                ],
+                "valid_targets": 40,
+                "action_loss": 1.0133787393569946,
+                "moe_aux_loss": 5.1532816886901855,
+                "writer_aux_gradient_norm": 4.706897244349707e-08,
+                "writer_task_gradient_parameters": 0,
+                "next_lr": 3.273531317401617e-06
+              }
+            ],
+            "gradient_audit": "No prediction gradients reach any layer's memory_ffn under detached section history. Writer MoE auxiliary gradients retained exactly; normalized top-1 routing can yield zero/nearly-zero gradient. No added supervision or BPTT.",
+            "device": "cpu"
+          },
+          "checkpoint_resume": {
+            "passed": true,
+            "interrupted_after_optimizer_steps": 1,
+            "resumed_at_section": 1,
+            "final_optimizer_steps": 3,
+            "parameters_bitwise_equal": true,
+            "history_equal": true,
+            "validation_equal": true
+          },
+          "scope": "Full architecture and complete three-section minibatch; parity batch two, resume batch one; synthetic RememberColor RGB/actions, native full-length Autoencode episodes. No full-budget reader preparation, reproduction learning/readiness gate, or manager experiment.",
+          "full_budget_reader_preparation_started": false,
+          "compute": {
+            "total_wall_seconds_including_checkpoint_io": 13.752643515006639,
+            "model_forward_passes": 24,
+            "optimizer_steps_local_and_reference_parity": 6,
+            "optimizer_steps_resume_verification": 6,
+            "gpu_step_seconds": 0.0,
+            "peak_gpu_bytes": 0,
+            "validation_seconds": 0.5377262779511511,
+            "unique_training_episodes_in_preparation_fixture": 1,
+            "training_sample_presentations_in_preparation_fixtures": 2
+          }
+        }
+      }
+    }
+  ],
+  "note": "Only executed measurements are present; omitted manager/system comparisons were not executed"
+}

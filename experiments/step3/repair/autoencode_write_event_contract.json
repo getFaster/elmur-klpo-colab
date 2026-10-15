@@ -1,0 +1,64 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "events_per_forward": 12,
+  "event_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "event_index": "section_index * n_layer + layer_index",
+  "physical_timesteps": "section_index*T through (section_index+1)*T-1; all layers share this physical interval",
+  "next_eligible_predictions": "next section onward; no current-section imitation reward may be credited to these outgoing writes",
+  "training_fill": "reset per batch; 3 sections produce only 3 writes per layer (out of 8 or 256 slots)",
+  "frequency": "one write decision per layer per section, not per token",
+  "candidate_source": "ELMURLayer.memory_ffn(u)[0], then training memory dropout",
+  "candidate_shape": [
+    "batch",
+    8,
+    64
+  ],
+  "memory_shape": [
+    12,
+    "batch",
+    8,
+    64
+  ],
+  "positions_shape": [
+    12,
+    "batch",
+    8
+  ],
+  "relative_tok_pos": "arange(offset+T-1, offset-1, -1); token observations remain chronological",
+  "timestamp": "tok_pos[0] = section_offset + section_length - 1",
+  "first_section_timestamp": 34,
+  "read_flag": "use_tok2mem: cross_attention1, tokens query incoming memory",
+  "write_flag": "use_mem2tok: cross_attention2, incoming memory queries all section tokens",
+  "prediction_alignment": "layer hidden states and all current-section predictions do not depend on that layer's outgoing write; influence begins in next section",
+  "causal_features": [
+    "current layer incoming memory and timestamps",
+    "current section observation embeddings",
+    "post-token-FFN hidden states",
+    "slot-conditioned candidate for every slot",
+    "section end time and layer index"
+  ],
+  "forbidden_features": [
+    "expert actions",
+    "oracle deck state",
+    "future observations",
+    "return-to-go"
+  ],
+  "native_target": "first_empty = (empty.float().cumsum(-1)==1); full bank -> argmin(pos), first tie",
+  "native_empty_blend": "lru_one_hot applies lambda even on the first empty slot; other first_empty mask entries use weight 1. Preserve code, not contradictory comment.",
+  "noncontiguous_empty_caveat": "cumsum==1 can select occupied slots after first empty and before second empty; normal prefix-fill state selects one slot",
+  "gradient_boundary": "incoming layer memories detached before each section; no future section task gradient into previous writes",
+  "manager_integration": "deferred to execution item 6; not compatible with legacy single-token manager rollouts"
+}

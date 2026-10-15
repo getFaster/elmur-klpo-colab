@@ -14,23 +14,35 @@ class ELMURReader(nn.Module):
     candidate. Native LRU retains its original new-vector blending convention.
     """
 
-    def __init__(self, slots: int = 2, dimension: int = 32) -> None:
+    def __init__(
+        self,
+        slots: int = 2,
+        dimension: int = 32,
+        *,
+        state_dim: int = 4,
+        action_dim: int = 4,
+        env_name: str = "tmaze",
+        native_lambda: float = 0.79,
+        memory_init_std: float = 0.0,
+        trainable_candidates: bool = False,
+    ) -> None:
         super().__init__()
+        self.trainable_candidates = trainable_candidates
         self.model = ELMURModel(
-            state_dim=4,
-            act_dim=4,
+            state_dim=state_dim,
+            act_dim=action_dim,
             d_model=dimension,
             d_ff=dimension * 2,
             n_layer=1,
             n_head=2,
             memory_size=slots,
-            env_name="tmaze",
+            env_name=env_name,
             sequence_format="s",
-            memory_init_std=0.0,
+            memory_init_std=memory_init_std,
             dropout=0.0,
             dropatt=0.0,
             memory_dropout=0.0,
-            lru_blend_alpha=0.79,
+            lru_blend_alpha=native_lambda,
             use_moe=False,
             max_seq_len=2048,
         )
@@ -38,7 +50,7 @@ class ELMURReader(nn.Module):
         self.model.layers[0].memory_ffn.register_forward_hook(self._capture)
 
     def _capture(self, module: nn.Module, inputs: tuple, output: tuple) -> None:
-        self._candidate = output[0].detach()
+        self._candidate = output[0] if self.trainable_candidates else output[0].detach()
 
     def initial(self, batch_size: int) -> MemoryState:
         return self.model.init_memory(batch_size, next(self.parameters()).device)[0]

@@ -1,0 +1,29 @@
+{
+  "commit": "8abce2dce9ceacd411d46d4a99c287f7975892f5",
+  "repository": "https://github.com/CognitiveAISystems/RATE",
+  "files": {
+    "src/trainer.py": "3d57d5a0b70a06f34ef6c1b8e415fbfe8f71be49f99fe31f13837696e2b8ddb2",
+    "src/train.py": "81520b249e609bf80e8f1cde86595eef566e4610389fe002621d2ee5c006cf25",
+    "src/utils/dataloaders.py": "6b57c1368f5fd73812861be98dbf58dc6e0e0b066c4892e39d5f7bcbc5f5bf05",
+    "src/utils/lr_scheduler.py": "bf48d289327e076ed3a352fbf6796a06574388c971c139cda27e8cd43fd48d01",
+    "src/envs_datasets/mikasa_robo_dataset.py": "1a21b5ba9b8b70b9557ed2c10c514157330a6d50f3909af72665ae47908a0969",
+    "src/envs_datasets/popgym_dataset.py": "2508a3c16874c66ddd10cf6ed7f714c50b224bdfb7acce78c77c181fc9c19447",
+    "offline_rl_baselines/ELMUR/model.py": "71325669a00cb2365f293c040591f045e6329b468ef2053c85cdad2c1c290c27",
+    "offline_rl_baselines/ELMUR/README.md": "68a3cb7e75dbd0aa37f44ad76d1f2eaeef7f6dc224703b6c240b44481ebf57ed",
+    "offline_rl_baselines/ELMUR/layers/rel_partial_learnable_multihead_attn.py": "418c91172298381a3628307ad1af447e7c5567e5b08c898d208e40685eed969a",
+    "offline_rl_baselines/ELMUR/layers/relative_bias.py": "75cb1be92cc837f665a7b7fbae132eb250a582c596a3e3eb17e67ba8d0c0aec7",
+    "offline_rl_baselines/ELMUR/layers/multi_head_attention.py": "9548bcf4eead0ff4b1d2ad4bc9d35eb17711d69b9f1a29ad2b83cd5f50ea77f8",
+    "offline_rl_baselines/ELMUR/layers/memory.py": "fbb1aab577e68a5005747635b299a8ba509c1edee1e7509f83be4acd4722b374",
+    "offline_rl_baselines/ELMUR/layers/mixture_of_experts.py": "bb8921551d83da281261da8ee9b68c1b208c9f666467a3d1b2e675fd0c7cbd8b",
+    "offline_rl_baselines/ELMUR/layers/positional_embeddings.py": "4553971e00564f25bca524daabfea07966fee59160379554439c9fc3f8f00e55",
+    "offline_rl_baselines/ELMUR/layers/__init__.py": "40c04b227d74da3a018c2449fb8d1855752de22fd4c98c1789b0f6c276eba476",
+    "offline_rl_baselines/ELMUR/layers/feed_forward_network.py": "6291df806b4d34857fa6deda0d6e1d35db60a3dea7464a0fd11ffb6d27454e37",
+    "offline_rl_baselines/ELMUR/layers/normalization.py": "c0bfc8706a5a5f3a1c779c90af59047e4f03bddd764084d10cdfd653f6f3e611",
+    "RATE/env_encoders/obs_encoders.py": "3c9a795695ae62664b961381a1daf813957deb304367e43957ab117c84586cd2",
+    "RATE/env_encoders/act_decoders.py": "49c719b27f7ec31375921c374c51ec4eae58c2a44d7f11dc08092aff820a11a4",
+    "RATE/env_encoders/act_encoders.py": "5f6f83aba675228bc9547390ee644eb8ee030fb8204b9cca52bac34705273a4e",
+    "RATE/env_encoders/rtg_encoders.py": "6f7b814a8959aa3e4012639bbbd42580bfc99e9b3db664e0fe96350a1ef03997",
+    "RATE/env_encoders/__init__.py": "b140d1316f2ab26ff5d816de6110b854fbf175a4aa14cd318b887a949f508947",
+    "run_experiments/MIKASA_Robo/ELMUR_1/rc3.sh": "4874735535c1580ef05426a65e59c064f9c2b72eaf22bf4170811c32b072753c"
+  }
+}

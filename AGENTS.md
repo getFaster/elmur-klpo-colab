@@ -16,6 +16,14 @@ experiment budgets. Consult `README.md`, `step_2_implementation.md`, and
 `step_2_results.md` for usage, design decisions, and measured results;
 `step_*_plan.md` records development specifications.
 
+Before preparing task readers, consult
+[data_preparation_hints.md](data_preparation_hints.md) for RATE/ELMUR dataset
+downloads, collection scripts, loaders and provenance checks. Prefer matching
+released demonstrations for offline reader preparation. Keep dataset access
+separate from simulator availability: a renderer failure does not establish
+that recorded expert trajectories are unavailable. Distinguish downloaded
+demonstrations from generated episodes and oracle-derived labels in reports.
+
 ## Commands and style
 
 Use uv and pinned Python 3.12. Prefix commands with

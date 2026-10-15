@@ -1,5 +1,5 @@
 import numpy as np
-import gym
+import gymnasium as gym
 
 """
 T-Maze: originated from (Bakker, 2001) and earlier neuroscience work, 
