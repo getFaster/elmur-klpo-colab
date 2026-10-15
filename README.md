@@ -27,6 +27,27 @@ Install [uv](https://docs.astral.sh/uv/) and run from this directory:
 uv run pytest
 ```
 
+### Google Colab
+
+Open [colab_step3.ipynb](colab_step3.ipynb) in Colab with a GPU runtime. The
+notebook clones this repository, installs the locked environment, downloads
+and verifies the pinned RememberColor3 demonstration archive, and stores
+checkpoints under Google Drive so an interrupted Colab session can resume.
+The archive is about 4.3 GB and extracts to about 5.9 GB; ensure the runtime
+has enough local disk space before starting.
+
+The final notebook cell runs the requested command:
+
+```bash
+uv run python -m elmur_klpo.experiment \
+  --config configs/step3_remembercolor_reader.json \
+  --output /content/drive/MyDrive/elmur-klpo-runs/step3_upstream_rc3 \
+  --device cuda
+```
+
+If Colab disconnects, rerun the resume cell. This Step 3 configuration is the
+fixed-LRU reader-preparation stage; it does not start learned manager training.
+
 This single command installs the locked environment and runs all prescribed
 tests, including A–G and finite differences for every parameter. Python 3.12 is
 pinned in `.python-version`; uv can provision it if needed. Linux and Windows
